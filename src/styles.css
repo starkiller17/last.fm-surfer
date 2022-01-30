@@ -2,4 +2,10 @@
 .sidebar {
     margin-top: 36px;
     min-height: calc(100vh - 36px);
+    width: 20%;
+}
+
+.content {
+    margin-left: 20%;
+    z-index: -1;
 }

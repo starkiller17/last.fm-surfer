@@ -1,0 +1,16 @@
+<div class="d-flex align-content-sm-around">
+    <input 
+      class="form-control me-2"
+      type="text"
+      placeholder="Favorite artist..." 
+      (keyup.enter)="search()" aria-label="Search" #searchInput>
+    
+    <select class="form-select form-select-sm me-2" aria-label="Default select example" 
+    (change)="search()"
+     #methodSelect>
+      <option value="gettopalbums">Top albums</option>
+      <option value="gettoptracks">Top tracks</option>
+    </select>
+    <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+    
+</div>

@@ -1,5 +1,23 @@
-<ul>
-    <li *ngFor="let top of artistTopResults">
-        {{ top | json }}
-    </li>
-</ul>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 mt-4" *ngFor="let top of artistTopResults | keyvalue">
+            <div class="card shadow">
+                <div *ngIf="top['value']['image'][3]['#text'] !== '';  then albumImg else defaultImg"></div>
+                <ng-template #albumImg>
+                    <img [src]="top['value']['image'][3]['#text']" class="card-img-top" alt="album-cover">
+                </ng-template>
+                <ng-template #defaultImg>
+                    <img src="https://m.media-amazon.com/images/I/A1rJLC4ghcL._SX522_.jpg" alt="album-cover">                    
+                </ng-template>
+                <div class="card-body">
+                  <p class="card-text"><strong class="text-primary">Album: </strong>{{ top['value']['name'] }}</p>
+                  <p class="card-text"><strong class="text-info">Play Count: </strong> {{ top['value']['playcount'] | number }}</p>
+                  <div *ngIf="searchMethod === 'gettoptracks'">
+                    <p class="card-text"><strong class="text-success">Listeners: </strong> {{ top['value']['listeners'] | number }}</p>
+                    <p class="card-text"><strong class="text-success">Rank: </strong> {{ top['value']['@attr']['rank'] | number }}</p>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

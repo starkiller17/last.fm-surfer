@@ -20,7 +20,18 @@ export class LastFmService {
   private format: string = "json";
   private auto_correct: number = -1;
   
-  constructor(private http: HttpClient) {  }
+  constructor(private http: HttpClient) {
+    // if( localStorage.getItem('artistHistory') ) {
+    //   this._searchHistory = JSON.parse( localStorage.getItem('artistHistory')! );
+    // }
+
+    // Get the search historyu and the las results
+    this._searchHistory = JSON.parse( localStorage.getItem('artistHistory')! ) || [];
+    if (this._searchHistory.length >= 1) {
+      this.searchMethod = this._searchHistory[0]['method'] || '';
+    }
+    this.artistTopResults = JSON.parse( localStorage.getItem('artistTopResults')! ) || [];
+  }
 
 
   get history() {
@@ -48,6 +59,8 @@ export class LastFmService {
       };
       this._searchHistory.unshift(searchObject);
       this._searchHistory = this._searchHistory.splice(0, 15);
+
+      localStorage.setItem('artistHistory', JSON.stringify(this._searchHistory));
     }
 
     const params = new HttpParams()
@@ -71,17 +84,13 @@ export class LastFmService {
         //console.log(resp.topalbums.album);
         if ( method === "gettopalbums" ) {
           this.artistTopResults = resp['topalbums']['album'];
+          localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
         } else {
           this.artistTopResults = resp['toptracks']['track'];
-          this.artistTopResults = this.artistTopResults.sort( (a, b) => {
-            if ( a['value']['@attr']['rank'] > b['value']['@attr']['rank'] ) {
-              return 1;
-            }
-            if ( a['value']['@attr']['rank'] < b['value']['@attr']['rank'] ) {
-              return -1;
-            }
-            return 0;
-          });
+          localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
+          
+          //this.artistTopResults = this.artistTopResults.sort( (a, b) => ( ( parseInt(a['@attr']['rank']) - parseInt(b['@attr']['rank']) ) ) );
+          
         }
         
       });

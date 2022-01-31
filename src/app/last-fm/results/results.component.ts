@@ -24,4 +24,10 @@ export class ResultsComponent implements OnInit {
     return this.LastFmService.method;
   }
 
+
+  cardHover(current: any) {
+    console.log('hover');
+    console.log( current );
+  }
+
 }

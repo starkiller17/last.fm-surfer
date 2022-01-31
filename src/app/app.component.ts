@@ -16,7 +16,7 @@ export class AppComponent {
   }
   
   searchHistoryItem( artist: string, method: string ) {
-    console.log(artist, method);
+    this.lastFmService.getArtistTop(artist, method);
   }
 
 }

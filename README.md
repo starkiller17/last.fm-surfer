@@ -20,6 +20,8 @@ It shows your last 15 artists searches so you can click them again to see the re
 
 *You can find the documentation to use last.fm API on https://www.last.fm/es/api*
 
+Thanks for checking this project! :)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
 
 ## Development server

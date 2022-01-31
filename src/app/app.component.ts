@@ -14,4 +14,9 @@ export class AppComponent {
   get history() {
     return this.lastFmService.history;
   }
+  
+  searchHistoryItem( artist: string, method: string ) {
+    console.log(artist, method);
+  }
+
 }

@@ -1,6 +1,6 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-12 col-md-6 col-lg-4 mt-4" *ngFor="let top of artistTopResults | keyvalue">
+        <div class="col-sm-12 col-md-6 col-lg-4 col-xl-3 mt-4" *ngFor="let top of artistTopResults | keyvalue">
             <div class="card shadow">
                 <div *ngIf="top['value']['image'][3]['#text'] !== '';  then albumImg else defaultImg"></div>
                 <ng-template #albumImg>

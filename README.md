@@ -1,4 +1,23 @@
 # LastFmSurfer
+### *By Said Méndez*
+
+# Description
+This project gets a music artist's top tracks or albums according to last.fm data using their API.
+It shows your last 15 artists searches so you can click them again to see the results.
+
+# Installation
+**- Node.js**
+1. Go to https://nodejs.org/es/download/ and download the LTS version of Node.js for your Operative System.
+2. Install Node.js
+**- Angular CLI**
+1.  Open a terminal and type execute the following command `npm install -g @angular/cli`
+2.  *Note: for Linux and macOS you need to add `sudo` command and for Windows open a console as admin.*
+3.  Wait for the installation to complete.
+4.  Download the source code or clone the repo.
+5.  Using a terminal, go to the last-fm-surfer directory.
+6.  To run the project use the next command `ng serve -o`
+
+*You can find the documentation to use last.fm API on https://www.last.fm/es/api*
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.0.
 

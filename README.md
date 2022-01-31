@@ -14,7 +14,7 @@ It shows your last 15 artists searches so you can click them again to see the re
 2.  *Note: for Linux and macOS you need to add `sudo` command and for Windows open a console as admin.*
 3.  Wait for the installation to complete.
 4.  Download the source code or clone the repo.
-5.  Using a terminal, go to the last-fm-surfer directory.
+5.  Using a terminal, go to the last.fm-surfer directory.
 6.  To run the project use the next command `ng serve -o`
 
 *You can find the documentation to use last.fm API on https://www.last.fm/es/api*

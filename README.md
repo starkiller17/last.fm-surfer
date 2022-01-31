@@ -9,6 +9,7 @@ It shows your last 15 artists searches so you can click them again to see the re
 **- Node.js**
 1. Go to https://nodejs.org/es/download/ and download the LTS version of Node.js for your Operative System.
 2. Install Node.js
+
 **- Angular CLI**
 1.  Open a terminal and type execute the following command `npm install -g @angular/cli`
 2.  *Note: for Linux and macOS you need to add `sudo` command and for Windows open a console as admin.*

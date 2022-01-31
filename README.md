@@ -15,7 +15,8 @@ It shows your last 15 artists searches so you can click them again to see the re
 3.  Wait for the installation to complete.
 4.  Download the source code or clone the repo.
 5.  Using a terminal, go to the last.fm-surfer directory.
-6.  To run the project use the next command `ng serve -o`
+6.  Execute `npm install` to make sure node packages are installed.
+7.  To open the project use `ng serve -o`
 
 *You can find the documentation to use last.fm API on https://www.last.fm/es/api*
 

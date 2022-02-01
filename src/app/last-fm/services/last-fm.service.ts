@@ -96,17 +96,27 @@ export class LastFmService {
     )
     .subscribe(
     (resp: any) => {
-      //console.log(resp.topalbums.album);
-      if ( method === "gettopalbums" ) {
-        this.artistTopResults = resp['topalbums']['album'];
-        localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
-      } else {
-        this.artistTopResults = resp['toptracks']['track'];
-        localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
-        
-        //this.artistTopResults = this.artistTopResults.sort( (a, b) => ( ( parseInt(a['@attr']['rank']) - parseInt(b['@attr']['rank']) ) ) );
-        
+      try {
+        //console.log(resp.topalbums.album);
+        if ( method === "gettopalbums" ) {
+          this.artistTopResults = resp['topalbums']['album'];
+          localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
+        } else {
+          this.artistTopResults = resp['toptracks']['track'];
+          localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
+          
+          //this.artistTopResults = this.artistTopResults.sort( (a, b) => ( ( parseInt(a['@attr']['rank']) - parseInt(b['@attr']['rank']) ) ) );
+          
+        }
+      } 
+      catch(error) {
+        this.artistTopResults = [];
+        this.artistTopResults.push({
+          status: 500,
+          message: 'Something went wrong, the API response has changed, please check the documentation.'
+        });
       }
+      
     });
     
   }

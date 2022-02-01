@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div *ngIf="artistTopResults[0].status === 400; then showError else showArtistData"></div>
+        <div *ngIf="artistTopResults[0].status === 400 || artistTopResults[0].status === 500; then showError else showArtistData"></div>
         
         <ng-template #showError>
             <div class="mt-4 animate__animated animate__flipInY">

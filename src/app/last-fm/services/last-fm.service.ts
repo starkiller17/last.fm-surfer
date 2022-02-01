@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
 
 interface History {
   artist: string;
@@ -79,22 +80,34 @@ export class LastFmService {
     
     this.searchMethod = method;
     
-    this.http.get(this.lastFmApiUrl, { params })
-      .subscribe( (resp: any) => {
-        //console.log(resp.topalbums.album);
-        if ( method === "gettopalbums" ) {
-          this.artistTopResults = resp['topalbums']['album'];
-          localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
-        } else {
-          this.artistTopResults = resp['toptracks']['track'];
-          localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
-          
-          //this.artistTopResults = this.artistTopResults.sort( (a, b) => ( ( parseInt(a['@attr']['rank']) - parseInt(b['@attr']['rank']) ) ) );
-          
-        }
+    
+    this.http
+    .get(this.lastFmApiUrl, { params })
+    .pipe(
+      catchError( (error: any) => {
+        console.log(error);
+        this.artistTopResults = [];
+        this.artistTopResults.push({
+          status: 400,
+          message: 'Something went wrong, please check the API documentation.'
+        });
+        return throwError(error);
+      })
+    )
+    .subscribe(
+    (resp: any) => {
+      //console.log(resp.topalbums.album);
+      if ( method === "gettopalbums" ) {
+        this.artistTopResults = resp['topalbums']['album'];
+        localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
+      } else {
+        this.artistTopResults = resp['toptracks']['track'];
+        localStorage.setItem('artistTopResults', JSON.stringify(this.artistTopResults));
         
-      });
-
+        //this.artistTopResults = this.artistTopResults.sort( (a, b) => ( ( parseInt(a['@attr']['rank']) - parseInt(b['@attr']['rank']) ) ) );
+        
+      }
+    });
     
   }
 }
